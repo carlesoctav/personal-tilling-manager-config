@@ -21,6 +21,25 @@
 ; === END OF INSTRUCTIONS ===
 ; ===========================
 
+createInitialDesktops(NumInitialDesktops)
+{
+    global DesktopCount, CurrentDesktop
+
+    OutputDebug, Creating %NumInitialDesktops% initial desktops
+
+    Current := CurrentDesktop
+
+    Loop, % NumInitialDesktops - DesktopCount
+    {
+        createVirtualDesktop()
+    }
+
+    OutputDebug, Switching back to desktop %Current%
+    _switchDesktopToTarget(Current)
+}
+
+createInitialDesktops(9)
+
 CapsLock & 1::switchDesktopByNumber(1)
 CapsLock & 2::switchDesktopByNumber(2)
 CapsLock & 3::switchDesktopByNumber(3)
@@ -31,20 +50,8 @@ CapsLock & 7::switchDesktopByNumber(7)
 CapsLock & 8::switchDesktopByNumber(8)
 CapsLock & 9::switchDesktopByNumber(9)
 
-CapsLock & Numpad1::switchDesktopByNumber(1)
-CapsLock & Numpad2::switchDesktopByNumber(2)
-CapsLock & Numpad3::switchDesktopByNumber(3)
-CapsLock & Numpad4::switchDesktopByNumber(4)
-CapsLock & Numpad5::switchDesktopByNumber(5)
-CapsLock & Numpad6::switchDesktopByNumber(6)
-CapsLock & Numpad7::switchDesktopByNumber(7)
-CapsLock & Numpad8::switchDesktopByNumber(8)
-CapsLock & Numpad9::switchDesktopByNumber(9)
-
-CapsLock & n::switchDesktopToRight()
-CapsLock & p::switchDesktopToLeft()
-CapsLock & s::switchDesktopToRight()
-CapsLock & a::switchDesktopToLeft()
+CapsLock & PgUp::switchDesktopToRight()
+CapsLock & PgDn::switchDesktopToLeft()
 CapsLock & tab::switchDesktopToLastOpened()
 
 CapsLock & c::createVirtualDesktop()
