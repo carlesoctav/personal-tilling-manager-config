@@ -4,7 +4,7 @@
 ; toggle taskbar on and off using hot key
 ; Control q
 
-^q::            ; ToggleTaskbar()
+#q::            ; ToggleTaskbar()
 
 If Transparent := !Transparent
 {
